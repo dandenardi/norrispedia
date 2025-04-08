@@ -1,6 +1,7 @@
 'use client'
 
 import {useEffect, useState} from 'react';
+import ChuckCard from '@/components/ChuckCard';
 
 export default function ChuckPage(){
   const [joke, setJoke] = useState('');
@@ -25,15 +26,7 @@ export default function ChuckPage(){
       <h1 className="text-3xl" font-bold text-center text-orange-600>
         Chuck Norris Joke!
       </h1>
-      <p className="text-lg max-w-xl text-center">{joke}</p>
-
-    <button
-      onClick={getRandomJoke}
-      className="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition duration-200"
-    >
-      Another one, please!
-    </button>
-
+      <ChuckCard joke={joke} onNewJoke={getRandomJoke} />
 
     </main>
   )
