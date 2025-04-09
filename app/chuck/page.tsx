@@ -1,34 +1,34 @@
-'use client'
+"use client";
 
-import {useEffect, useState} from 'react';
-import ChuckCard from '@/components/ChuckCard';
+import { useEffect, useState } from "react";
+import ChuckCard from "@/components/ChuckCard";
 
-export default function ChuckPage(){
-  const [joke, setJoke] = useState('');
+export default function ChuckPage() {
+  const [fact, setFact] = useState("");
 
- 
- async function getRandomJoke(){
-  try {
-    const response = await fetch('https://api.chucknorris.io/jokes/random');
-    const data = await response.json()
-    setJoke(data.value);
-  } catch (error) {
-    console.error("Could not fetch a new joke (maybe Chuck Norris thinks you shouldn't...", error);
+  async function getRandomFact() {
+    try {
+      const response = await fetch("/api/joke");
+      const data = await response.json();
+      setFact(data.value);
+    } catch (error) {
+      console.error(
+        "Could not fetch a new fact (maybe Chuck Norris thinks you shouldn't...",
+        error
+      );
+    }
   }
- }
- 
-  useEffect(()=>  {
-    getRandomJoke();
+
+  useEffect(() => {
+    getRandomFact();
   }, []);
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen gap-6 p-8">
-      <h1 className="text-3xl" font-bold text-center text-orange-600>
-        Chuck Norris Joke!
+      <h1 className="text-3xl font-bold text-center text-orange-600">
+        Fatos do Chuck Norris!
       </h1>
-      <ChuckCard joke={joke} onNewJoke={getRandomJoke} />
-
+      <ChuckCard fact={fact} onNewFact={getRandomFact} />
     </main>
-  )
-
+  );
 }
